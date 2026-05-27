@@ -1,0 +1,22 @@
+{
+  "name": "bibliotek",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Lista personal de lectura — proyecto de pruebas para Spec-Driven Development con OpenSpec",
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "dev:api": "pnpm --filter @bibliotek/api dev",
+    "dev:web": "pnpm --filter @bibliotek/web dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
