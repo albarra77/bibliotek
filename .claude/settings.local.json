@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pnpm --filter @bibliotek/api test)"
+      "Bash(pnpm --filter @bibliotek/api test)",
+      "Bash(openspec status *)",
+      "Bash(openspec instructions *)"
     ]
   }
 }
