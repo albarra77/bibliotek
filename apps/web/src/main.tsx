@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage.js';
 import { BooksPage } from './pages/BooksPage.js';
 import { NewBookPage } from './pages/NewBookPage.js';
 import { EditBookPage } from './pages/EditBookPage.js';
+import { BookDetailPage } from './pages/BookDetailPage.js';
 import { NotFoundPage } from './pages/NotFoundPage.js';
 import './index.css';
 
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: 'books', element: <BooksPage /> },
       { path: 'books/new', element: <NewBookPage /> },
       { path: 'books/:id/edit', element: <EditBookPage /> },
+      { path: 'books/:id', element: <BookDetailPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

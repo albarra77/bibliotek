@@ -29,6 +29,7 @@ export function BookList({ books, onDelete }: Props) {
             {book.year ? ` (${book.year})` : ''}
             {book.isbn ? <small style={{ marginLeft: '0.5rem', color: '#888' }}>ISBN: {book.isbn}</small> : null}
           </span>
+          <Link to={`/books/${book.id}`}>Ver</Link>
           <Link to={`/books/${book.id}/edit`}>Editar</Link>
           <button onClick={() => onDelete(book.id)} style={{ color: 'crimson' }}>
             Eliminar
