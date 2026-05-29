@@ -1,12 +1,12 @@
+import { Link } from 'react-router-dom';
 import type { Book } from '@bibliotek/shared';
 
 interface Props {
   books: Book[];
-  onEdit: (book: Book) => void;
   onDelete: (id: number) => void;
 }
 
-export function BookList({ books, onEdit, onDelete }: Props) {
+export function BookList({ books, onDelete }: Props) {
   if (books.length === 0) {
     return <p>No hay libros en el catálogo todavía.</p>;
   }
@@ -29,7 +29,7 @@ export function BookList({ books, onEdit, onDelete }: Props) {
             {book.year ? ` (${book.year})` : ''}
             {book.isbn ? <small style={{ marginLeft: '0.5rem', color: '#888' }}>ISBN: {book.isbn}</small> : null}
           </span>
-          <button onClick={() => onEdit(book)}>Editar</button>
+          <Link to={`/books/${book.id}/edit`}>Editar</Link>
           <button onClick={() => onDelete(book.id)} style={{ color: 'crimson' }}>
             Eliminar
           </button>
