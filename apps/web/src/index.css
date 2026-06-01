@@ -1,7 +1,12 @@
+@import './styles/tokens.css';
+
 :root {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
   color-scheme: light dark;
+  color: var(--color-text-default);
+  background-color: var(--color-background-default);
 }
 
 body {
@@ -17,6 +22,7 @@ main {
 
 h1 {
   margin-bottom: 0.25rem;
+  font-weight: var(--font-weight-bold);
 }
 
 code {
@@ -29,5 +35,5 @@ code {
 hr {
   margin: 2rem 0;
   border: none;
-  border-top: 1px solid rgba(127, 127, 127, 0.3);
+  border-top: 1px solid var(--color-border-default);
 }
