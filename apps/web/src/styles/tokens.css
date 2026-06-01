@@ -1,0 +1,105 @@
+/* ============================================================
+   Bibliotek — Design Tokens
+   Basado en: Simple Design System OCP (Figma)
+   https://www.figma.com/design/42t9Xx8io4kzJfwuPeWVS3/Simple-Design-System-OCP
+
+   Estructura en dos capas:
+   - Primitivos: el valor crudo (color hex, número, string). NUNCA se
+     usan directamente en componentes.
+   - Semánticos: apuntan a un primitivo y describen INTENCIÓN
+     (texto por defecto, fondo destacado, borde de error…). Es lo
+     que consumen los componentes.
+
+   Origen de los valores actuales:
+   - Confirmados desde el resumen del design system (modo SDS Light).
+   - Los TODO corresponden a tokens del Figma todavía sin extraer.
+   ============================================================ */
+
+:root {
+  /* ---------- Primitivos: COLOR ---------- */
+  --color-primitive-white: #FFFFFF;
+  --color-primitive-gray-900: #1E1E1E;
+  --color-primitive-gray-300: #D9D9D9;
+
+  /* TODO: extraer del Figma (modo SDS Light) y añadir el resto de la
+     paleta de grises y los acentos. Pista del docx: el sistema tiene
+     primitivos para gray, brand, success, warning, danger.
+     --color-primitive-gray-100: #________;
+     --color-primitive-gray-200: #________;
+     --color-primitive-gray-400: #________;
+     --color-primitive-gray-500: #________;
+     --color-primitive-gray-700: #________;
+     --color-primitive-brand-500: #________;
+     --color-primitive-success-500: #________;
+     --color-primitive-warning-500: #________;
+     --color-primitive-danger-500: #________;
+  */
+
+  /* ---------- Primitivos: TIPOGRAFÍA ---------- */
+  --font-family-base: Arial, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* TODO: extraer del Figma la familia para titulares si difiere.
+     --font-family-display: ________;
+  */
+
+  /* Escala tipográfica (TODO: confirmar contra Figma — Title Hero,
+     Heading, Body Base, Caption, etc.). Los valores de abajo son una
+     escala razonable de partida, no la del Figma. */
+  --font-size-xs:   12px;   /* TODO: confirmar */
+  --font-size-sm:   14px;   /* TODO: confirmar */
+  --font-size-base: 16px;   /* TODO: confirmar — Body Base */
+  --font-size-lg:   20px;   /* TODO: confirmar */
+  --font-size-xl:   24px;   /* TODO: confirmar — Heading */
+  --font-size-2xl:  32px;   /* TODO: confirmar — Title */
+  --font-size-3xl:  48px;   /* TODO: confirmar — Title Hero */
+
+  --font-weight-regular: 400;
+  --font-weight-medium:  500;
+  --font-weight-bold:    700;
+
+  --line-height-tight: 1.2;
+  --line-height-base:  1.5;
+  --line-height-loose: 1.7;
+
+  /* ---------- Semánticos: COLOR (modo SDS Light) ----------
+     Cada uno apunta a un primitivo. NUNCA escribas un hex en esta
+     sección — solo var(--color-primitive-…). */
+
+  --color-background-default: var(--color-primitive-white);
+  --color-text-default:       var(--color-primitive-gray-900);
+  --color-border-default:     var(--color-primitive-gray-300);
+
+  /* TODO: añadir los semánticos que use la UI a medida que aparecen.
+     Sugerencias del docx:
+     --color-background-subtle:  var(--color-primitive-gray-100);
+     --color-background-brand:   var(--color-primitive-brand-500);
+     --color-text-muted:         var(--color-primitive-gray-500);
+     --color-text-on-brand:      var(--color-primitive-white);
+     --color-border-strong:      var(--color-primitive-gray-700);
+     --color-feedback-success:   var(--color-primitive-success-500);
+     --color-feedback-warning:   var(--color-primitive-warning-500);
+     --color-feedback-danger:    var(--color-primitive-danger-500);
+  */
+
+  /* ---------- Semánticos: TIPOGRAFÍA ---------- */
+  --font-body:    var(--font-size-base) / var(--line-height-base) var(--font-family-base);
+  --font-heading: var(--font-weight-bold) var(--font-size-xl) / var(--line-height-tight) var(--font-family-base);
+  --font-title:   var(--font-weight-bold) var(--font-size-2xl) / var(--line-height-tight) var(--font-family-base);
+}
+
+/* ============================================================
+   Modo oscuro (SDS Dark)
+   TODO: extraer los valores del modo dark del Figma. Mientras tanto,
+   este bloque queda como esqueleto: cuando se rellenen los primitivos
+   y se confirme la paleta dark, los semánticos se redefinen aquí.
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* TODO: redefinir aquí los semánticos cuando tengamos paleta dark.
+       --color-background-default: var(--color-primitive-gray-900);
+       --color-text-default:       var(--color-primitive-white);
+       --color-border-default:     var(--color-primitive-gray-700);
+    */
+  }
+}
