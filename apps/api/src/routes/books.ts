@@ -5,7 +5,9 @@ import * as repo from '../repositories/books.js';
 export const booksRouter = new Hono();
 
 booksRouter.get('/', (c) => {
-  return c.json(repo.findAll());
+  const page = Math.max(1, Number(c.req.query('page') ?? '1'));
+  const limit = Math.max(1, Number(c.req.query('limit') ?? '5'));
+  return c.json(repo.findAll(page, limit));
 });
 
 booksRouter.get('/:id', (c) => {

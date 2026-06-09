@@ -6,7 +6,7 @@ export function HomePage() {
   const [count, setCount] = useState<number | null>(null);
 
   useEffect(() => {
-    listBooks().then((books) => setCount(books.length)).catch(() => setCount(null));
+    listBooks({ page: 1, limit: 1 }).then((res) => setCount(res.total)).catch(() => setCount(null));
   }, []);
 
   return (

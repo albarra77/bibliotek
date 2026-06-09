@@ -1,10 +1,12 @@
 import { db } from '../db.js';
-import type { Book, CreateBookInput, UpdateBookInput } from '@bibliotek/shared';
+import type { Book, BookListResponse, CreateBookInput, UpdateBookInput } from '@bibliotek/shared';
 
-export function findAll(): Book[] {
-  return db
-    .prepare('SELECT * FROM books ORDER BY created_at DESC, id DESC')
-    .all() as Book[];
+export function findAll(page: number, limit: number): BookListResponse {
+  const { total } = db.prepare('SELECT COUNT(*) as total FROM books').get() as { total: number };
+  const data = db
+    .prepare('SELECT * FROM books ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?')
+    .all(limit, (page - 1) * limit) as Book[];
+  return { data, total };
 }
 
 export function findById(id: number): Book | undefined {

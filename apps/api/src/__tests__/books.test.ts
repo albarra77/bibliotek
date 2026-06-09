@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { app } from '../app.js';
 import { db } from '../db.js';
-import type { Book } from '@bibliotek/shared';
+import type { Book, BookListResponse } from '@bibliotek/shared';
 
 beforeEach(() => {
   db.exec('DELETE FROM books');
@@ -64,16 +64,39 @@ describe('GET /books', () => {
   it('devuelve lista vacía cuando no hay libros', async () => {
     const res = await req('GET', '/books');
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual([]);
+    const body = await res.json() as BookListResponse;
+    expect(body.data).toEqual([]);
+    expect(body.total).toBe(0);
   });
 
   it('devuelve libros ordenados por created_at descendente', async () => {
     await req('POST', '/books', { title: 'Primero', author: 'A' });
     await req('POST', '/books', { title: 'Segundo', author: 'B' });
     const res = await req('GET', '/books');
-    const books = await res.json() as Book[];
-    expect(books[0]!.title).toBe('Segundo');
-    expect(books[1]!.title).toBe('Primero');
+    const body = await res.json() as BookListResponse;
+    expect(body.data[0]!.title).toBe('Segundo');
+    expect(body.data[1]!.title).toBe('Primero');
+    expect(body.total).toBe(2);
+  });
+
+  it('pagina correctamente con page=2&limit=1', async () => {
+    await req('POST', '/books', { title: 'Primero', author: 'A' });
+    await req('POST', '/books', { title: 'Segundo', author: 'B' });
+    const res = await req('GET', '/books?page=2&limit=1');
+    expect(res.status).toBe(200);
+    const body = await res.json() as BookListResponse;
+    expect(body.data).toHaveLength(1);
+    expect(body.data[0]!.title).toBe('Primero');
+    expect(body.total).toBe(2);
+  });
+
+  it('devuelve data vacía para página fuera de rango', async () => {
+    await req('POST', '/books', { title: 'A', author: 'X' });
+    const res = await req('GET', '/books?page=99&limit=5');
+    expect(res.status).toBe(200);
+    const body = await res.json() as BookListResponse;
+    expect(body.data).toEqual([]);
+    expect(body.total).toBe(1);
   });
 });
 
