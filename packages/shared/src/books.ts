@@ -26,3 +26,8 @@ export const UpdateBookSchema = z.object({
 export type Book = z.infer<typeof BookSchema>;
 export type CreateBookInput = z.infer<typeof CreateBookSchema>;
 export type UpdateBookInput = z.infer<typeof UpdateBookSchema>;
+
+export interface BookListResponse {
+  data: Book[];
+  total: number;
+}

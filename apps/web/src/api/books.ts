@@ -1,4 +1,4 @@
-import type { Book, CreateBookInput, UpdateBookInput } from '@bibliotek/shared';
+import type { Book, BookListResponse, CreateBookInput, UpdateBookInput } from '@bibliotek/shared';
 
 const BASE = '/api/books';
 
@@ -11,8 +11,11 @@ async function handleResponse<T>(res: Response): Promise<T> {
   return res.json();
 }
 
-export async function listBooks(): Promise<Book[]> {
-  return handleResponse(await fetch(BASE));
+export async function listBooks(params?: { page?: number; limit?: number }): Promise<BookListResponse> {
+  const qs = params
+    ? `?${new URLSearchParams({ page: String(params.page ?? 1), limit: String(params.limit ?? 5) })}`
+    : '';
+  return handleResponse(await fetch(`${BASE}${qs}`));
 }
 
 export async function getBook(id: number): Promise<Book> {
