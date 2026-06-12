@@ -20,11 +20,11 @@
   --color-primitive-white: #FFFFFF;
   --color-primitive-gray-900: #1E1E1E;
   --color-primitive-gray-300: #D9D9D9;
+  --color-primitive-gray-100: #F5F5F5;
 
   /* TODO: extraer del Figma (modo SDS Light) y añadir el resto de la
      paleta de grises y los acentos. Pista del docx: el sistema tiene
      primitivos para gray, brand, success, warning, danger.
-     --color-primitive-gray-100: #________;
      --color-primitive-gray-200: #________;
      --color-primitive-gray-400: #________;
      --color-primitive-gray-500: #________;
@@ -61,17 +61,22 @@
   --line-height-base:  1.5;
   --line-height-loose: 1.7;
 
+  /* ---------- Primitivos: RADIO ---------- */
+  --radius-200: 8px; /* TODO: confirmar valor exacto desde Figma (Radius/200) */
+
   /* ---------- Semánticos: COLOR (modo SDS Light) ----------
      Cada uno apunta a un primitivo. NUNCA escribas un hex en esta
      sección — solo var(--color-primitive-…). */
 
   --color-background-default: var(--color-primitive-white);
+  --color-background-subtle:  var(--color-primitive-gray-100);
+  --color-background-inverse: var(--color-primitive-gray-900);
   --color-text-default:       var(--color-primitive-gray-900);
+  --color-text-on-inverse:    var(--color-primitive-white);
   --color-border-default:     var(--color-primitive-gray-300);
 
   /* TODO: añadir los semánticos que use la UI a medida que aparecen.
      Sugerencias del docx:
-     --color-background-subtle:  var(--color-primitive-gray-100);
      --color-background-brand:   var(--color-primitive-brand-500);
      --color-text-muted:         var(--color-primitive-gray-500);
      --color-text-on-brand:      var(--color-primitive-white);

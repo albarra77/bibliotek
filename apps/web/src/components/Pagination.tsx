@@ -30,7 +30,18 @@ export function Pagination({ page, limit, total, onPageChange, onLimitChange }: 
               key={p}
               onClick={() => onPageChange(p)}
               disabled={p === page}
-              style={{ fontWeight: p === page ? 'bold' : 'normal' }}
+              style={
+                p === page
+                  ? {
+                      backgroundColor: 'var(--color-background-inverse)',
+                      color: 'var(--color-text-on-inverse)',
+                      border: 'none',
+                      borderRadius: 'var(--radius-200)',
+                      padding: '0.25rem 0.6rem',
+                      fontWeight: 'bold',
+                    }
+                  : { fontWeight: 'normal' }
+              }
             >
               {p}
             </button>
